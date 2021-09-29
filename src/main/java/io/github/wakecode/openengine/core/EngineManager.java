@@ -22,7 +22,10 @@ public class EngineManager {
         GLFW.glfwSetErrorCallback(errorCallback = GLFWErrorCallback.createPrint(System.err));
 
         window = Launcher.getWindow();
+        gameLogic = Launcher.getGame();
+
         window.init();
+        gameLogic.init();
     }
 
     public void start() throws Exception {
