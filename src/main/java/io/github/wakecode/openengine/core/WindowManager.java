@@ -97,7 +97,32 @@ public class WindowManager {
     }
 
     public void update() {
-        // TODO: Implement update() method.
+        GLFW.glfwSwapBuffers(window);
+        GLFW.glfwPollEvents();
+    }
+
+    public void cleanup() {
+        GLFW.glfwDestroyWindow(window);
+    }
+
+    public void setClearColor(float r, float g, float b, float a) {
+        GL11.glClearColor(r, g, b, a);
+    }
+
+    public boolean isKeyPressed(int keycode) {
+        return GLFW.glfwGetKey(window, keycode) == GLFW.GLFW_PRESS;
+    }
+
+    public boolean windowShouldClose() {
+        return GLFW.glfwWindowShouldClose(window);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        GLFW.glfwSetWindowTitle(window, title);
     }
 
     public boolean isResize() {
@@ -110,5 +135,33 @@ public class WindowManager {
 
     public boolean isvSync() {
         return vSync;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public long getWindow() {
+        return window;
+    }
+
+    public Matrix4f getProjectionMatrix() {
+        return projectionMatrix;
+    }
+
+    public Matrix4f updateProjectionMatrix() {
+        float aspectRatio = (float) width / height;
+
+        return projectionMatrix.setPerspective(FOV, aspectRatio, Z_NEAR, Z_FAR);
+    }
+
+    public Matrix4f updateProjectionMatrix(Matrix4f matrix, int width, int height) {
+        float aspectRatio = (float) width / height;
+
+        return matrix.setPerspective(FOV, aspectRatio, Z_NEAR, Z_FAR);
     }
 }
