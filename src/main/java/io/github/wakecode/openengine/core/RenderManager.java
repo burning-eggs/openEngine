@@ -23,6 +23,6 @@ public class RenderManager {
     }
 
     public void cleanup() {
-        
+
     }
 }
