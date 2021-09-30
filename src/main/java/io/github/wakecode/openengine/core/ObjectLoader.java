@@ -52,7 +52,7 @@ public class ObjectLoader {
         GL30.glBindVertexArray(0);
     }
 
-    private void cleanup() {
+    public void cleanup() {
         for (int vao : vaos) {
             GL30.glDeleteVertexArrays(vao);
         }
